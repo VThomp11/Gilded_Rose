@@ -20,9 +20,7 @@ class Shop {
       item.quality++;
   }
 }
-  isBackstagePassItem(item) {
-    return item.name === 'Backstage passes to a TAFKAL80ETC concert';
-  }
+
   updateBackstagePassItem(item) {
     if (item.quality < 50) {
       item.quality++;
@@ -35,12 +33,6 @@ class Shop {
     }
   }
 
-  isSulfurasItem(item) {
-    return item.name === 'Sulfuras, Hand of Ragnaros';
-  }
-  isConjuredItem(item) {
-    return item.name === 'Conjured Mana Cake';
-  }
   updateRegularItem(item) {
     if (item.quality > 0) {
       item.quality--;
@@ -54,23 +46,22 @@ class Shop {
 
   updateQuality() {
     for (let item of this.items) {
-      const isAgedBreeItem(item) {
-        return item.name === 'Aged Brie';
-      }
-      if (item.name === 'Aged Brie'){
+      const isAgedBreeItem = (item.name === 'Aged Brie');
+      const isBackstagePassItem = (item.name === 'Backstage passes to a TAFKAL80ETC concert');
+      const isSulfurasItem =(item.name === 'Sulfuras, Hand of Ragnaros');
+
+      if (isAgedBreeItem){
         this.updateBreeItem(item);
-      } else if (item.name === 'Backstage passes to a TAFKAL80ETC concert') {
+      } else if (isBackstagePassItem) {
         this.updateBackstagePassItem(item);
       }
-      else if (item.name === 'Sulfuras, Hand of Ragnaros') {
-        this.isSulfurasItem(item);
-      }
-      else if {item.name
+      else if (!isSulfurasItem) {
         this.updateRegularItem(item);
+      }
       }
     }
   }
-}
+
 
 
 
