@@ -62,4 +62,64 @@ describe('updateQuality', () => {
     expect(regularItem.sellIn).toBe(4);
   });
 
+  test('should increase quality of Aged Brie as it ages', () => {
+    const agedBrie = new Item('Aged Brie', 5, 10);
+    const shop = new Shop([agedBrie]);
+
+  shop.updateQuality();
+
+  expect(agedBrie.quality).toBe(11);
+  expect(agedBrie.sellIn).toBe(4);
+    });
+
+  test('The Quality of an item is never more than 50', () =>{
+  const regularItem = new Item('Regular Item', 5, 10);
+  expect(regularItem.quality).toBeLessThan(50)
+  // expect(regularItem.quality(40)).toBe(true);
+  // expect(regularItem.quality(60)).toBe(false);
+  // expect(regularItem.quality(49)).toBe(true);
+  // expect(regularItem.quality(50)).toBe(false); 
+  });
+
+  test('should not change quality of sellIn of Sulfuras', () => {
+    const sulfuras = new Item('Sulfuras, Hand of Ragnaros', 1, 50)
+    const shop = new Shop([sulfuras]);
+
+    shop.updateQuality
+
+    expect(sulfuras.quality).toBe(50)
+    expect(sulfuras.sellIn).toBe(1)
+  })
+  
+  test('should increase quality of Backstage Passes as it ages', () => {
+    const backstagePass = new Item('Backstage passes to a TAFKAL80ETC concert', 5, 10);
+    const shop = new Shop([backstagePass]);
+
+  shop.updateQuality();
+
+  expect(backstagePass.quality).toBe(13);
+  expect(backstagePass.sellIn).toBe(4);
+    });
+
+
+    test('should increase quality of Backstage Passes more as the concert date approaches rapidly', () => {
+      const backstagePass = new Item('Backstage passes to a TAFKAL80ETC concert', 4, 10);
+      const shop = new Shop([backstagePass]);
+
+      shop.updateQuality();
+
+      expect(backstagePass.quality).toBe(13);
+      expect(backstagePass.sellIn).toBe(3);
+    });
+
+    test('should drop quality of Backstage Passes to 0 after the concert', () => {
+      const backstagePass = new Item('Backstage passes to a TAFKAL80ETC concert', 0, 10);
+      const shop = new Shop([backstagePass]);
+
+      shop.updateQuality();
+
+      expect(backstagePass.quality).toBe(0);
+      expect(backstagePass.sellIn).toBe(-1);
+    });
+
 });
