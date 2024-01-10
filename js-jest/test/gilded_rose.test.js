@@ -30,3 +30,36 @@ describe("Gilded Rose Pin Down Tests", () => {
     expect(items[0].quality).toBe(23);
   });
 });
+
+describe('updateQuality', () => {
+  test('should decrease quality and sellIn for regular item', () => {
+    const regularItem = new Item('Regular Item', 5, 10);
+    const shop = new Shop([regularItem]);
+
+    shop.updateQuality();
+
+    expect(regularItem.quality).toBe(9);
+    expect(regularItem.sellIn).toBe(4);
+  });
+
+  test('should decrease quality and sellIn for regular item after sell-by date', () => {
+    const regularItem = new Item('Regular Item', 0, 10);
+    const shop = new Shop([regularItem]);
+
+    shop.updateQuality();
+
+    expect(regularItem.quality).toBe(8);
+    expect(regularItem.sellIn).toBe(-1);
+  });
+  
+  test('should not decrease quality below 0', () => {
+    const regularItem = new Item('Regular Item', 5, 0);
+    const shop = new Shop([regularItem]);
+
+    shop.updateQuality();
+
+    expect(regularItem.quality).toBe(0);
+    expect(regularItem.sellIn).toBe(4);
+  });
+
+});
