@@ -51,7 +51,7 @@ describe('updateQuality', () => {
     expect(regularItem.quality).toBe(8);
     expect(regularItem.sellIn).toBe(-1);
   });
-  
+
   test('should not decrease quality below 0', () => {
     const regularItem = new Item('Regular Item', 5, 0);
     const shop = new Shop([regularItem]);
@@ -78,7 +78,7 @@ describe('updateQuality', () => {
   // expect(regularItem.quality(40)).toBe(true);
   // expect(regularItem.quality(60)).toBe(false);
   // expect(regularItem.quality(49)).toBe(true);
-  // expect(regularItem.quality(50)).toBe(false); 
+  // expect(regularItem.quality(50)).toBe(false);
   });
 
   test('should not change quality of sellIn of Sulfuras', () => {
@@ -90,7 +90,7 @@ describe('updateQuality', () => {
     expect(sulfuras.quality).toBe(50)
     expect(sulfuras.sellIn).toBe(1)
   })
-  
+
   test('should increase quality of Backstage Passes as it ages', () => {
     const backstagePass = new Item('Backstage passes to a TAFKAL80ETC concert', 5, 10);
     const shop = new Shop([backstagePass]);
